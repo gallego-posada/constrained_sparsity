@@ -1,0 +1,26 @@
+matplotlib
+numpy
+pandas
+scipy
+seaborn
+pyyaml
+
+
+git+https://github.com/cooper-org/cooper.git@dev
+
+black==22.3
+flake8
+isort>=5.10.1
+pytest
+pylint==2.13
+mypy==0.782
+
+--extra-index-url https://download.pytorch.org/whl/cu113
+torch>=1.11
+
+--extra-index-url https://download.pytorch.org/whl/cu113
+torchvision>=0.12
+
+ptflops
+
+wandb==0.12.15

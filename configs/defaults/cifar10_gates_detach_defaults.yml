@@ -1,0 +1,43 @@
+task_type: "gated"
+
+dataset_name: "cifar10"
+
+model_type: "ResNet-28-10"
+use_bias: false
+bn_type: "L0"
+
+# target_density: LEFT UNSPECIFIED ON PURPOSE
+# 12 WRN layers are L0 compatible
+
+weight_decay: 5.0e-4
+droprate_init: 0.3
+
+batch_size: 128
+epochs: 200
+
+# Primal
+# Like Zagoruyko & Komodakis (2016) we use SDGM with lr 0.1 and momentum 0.9
+primal_optim: "SGDM"
+primal_lr: 0.1
+
+# gates_lr: LEFT UNSPECIFIED ON PURPOSE
+# l2_detach_gates: LEFT UNSPECIFIED ON PURPOSE
+
+# Same schedule as in https://arxiv.org/abs/1712.01312 (p. 7)
+use_lr_schedule: true
+lr_decay_ratio: 0.2
+sch_epoch_drop: [60, 120, 160]
+
+# Dual
+dual_optim: "SGD"
+dual_lr: 7.0e-4
+no_dual_restart: false # we *do* apply dual restarts
+
+# WandB
+# use_wandb, run_group LEFT UNSPECIFIED ON PURPOSE
+
+# Checkpointing
+# Not doing iterative checkpointing for this task.
+# Final status *does get* checkpointed.
+save_final_model: true
+checkpoint_every_n_epochs: -1

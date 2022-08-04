@@ -1,0 +1,43 @@
+
+task_type: "gated"
+
+dataset_name: "tiny_imagenet"
+model_type: "L0ResNet18"
+use_bias: false
+bn_type: "L0"
+
+# target_density: LEFT UNSPECIFIED ON PURPOSE
+# 16 layers are L0 compatible (2 per BasicBlock - 2 BBs per layer - 4 layer => 2x2x4)
+
+# Matches setup of https://arxiv.org/abs/2001.10710 (**)
+
+weight_decay: 5.0e-4
+droprate_init: 0.3
+
+batch_size: 100
+epochs: 120
+
+# Primal
+primal_optim: "SGDM"
+primal_lr: 0.1
+
+gates_lr: 1.0
+l2_detach_gates: true
+
+use_lr_schedule: true
+lr_decay_ratio: 0.1 # Matches lr_decay_ratio for ResNet50 (unclear from (**))
+sch_epoch_drop: [30, 60, 90] # Matches schedule of https://arxiv.org/abs/2001.10710
+
+# Dual
+dual_optim: "SGD"
+# dual_lr: LEFT UNSPECIFIED ON PURPOSE
+no_dual_restart: false # we *do* apply dual restarts
+
+# WandB
+# use_wandb, run_group LEFT UNSPECIFIED ON PURPOSE
+
+# Checkpointing
+# Not doing iterative checkpointing for this task.
+# Final status *does get* checkpointed.
+save_final_model: true
+checkpoint_every_n_epochs: -1

@@ -1,0 +1,10 @@
+dataset_name: "mnist"
+epochs: 2
+primal_lr: 7.0e-2
+dual_lr: 1.0e-1
+model_type: "MLP"
+lmbdas: [1.0e-3]
+
+# Use few batches for train and validation loops
+debug_batches: 5
+val_prop: 0.05

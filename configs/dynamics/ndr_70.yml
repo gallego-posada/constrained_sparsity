@@ -1,0 +1,15 @@
+model_type: "LeNet"
+dataset_name: "mnist"
+
+seed: 1
+run_group: "dr_vs_no_dr"
+epochs: 200
+
+target_density: [0.7]
+
+primal_optim: 'Adam'
+primal_lr: 7.0e-4
+
+dual_optim: 'SGD'
+dual_lr: 1.0e-4
+no_dual_restart: true # no_dual_restarts

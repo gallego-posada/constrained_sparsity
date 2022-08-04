@@ -1,0 +1,21 @@
+dataset_name: "mnist"
+model_type: "MLP"
+use_bias: true
+
+seed: 1
+batch_size: 256
+epochs: 100
+
+# Primal
+primal_optim: "Adam"
+primal_lr: 1.0e-3
+
+# Dual -- This is a penalized task
+dual_optim: 'None' 
+dual_lr: 0.
+
+# WandB
+use_wandb: false
+
+# No need to carry out validation loop
+val_freq: -1

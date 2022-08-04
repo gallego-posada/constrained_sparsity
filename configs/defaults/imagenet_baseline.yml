@@ -1,0 +1,36 @@
+task_type: "baseline"
+
+dataset_name: "imagenet"
+model_type: "L0ResNet50"
+use_bias: false
+bn_type: "regular"
+
+# Default values taken from https://arxiv.org/abs/1912.04427
+
+# target_density: LEFT UNSPECIFIED ON PURPOSE
+# We do not sparsify shortcut. In this case, 48 L0Conv2D layers
+
+weight_decay: 1.0e-4
+
+# Baseline paper does 256 distributed over 4 GPUs. When creating the dataloader,
+# the code automatically splits this batch size across the number of GPUs.
+batch_size: 256
+epochs: 90
+
+# Primal
+primal_optim: "SGDM"
+primal_lr: 0.1
+
+use_lr_schedule: true
+lr_decay_ratio: 0.1
+sch_epoch_drop: [30, 60]
+
+# WandB 
+# use_wandb, run_group LEFT UNSPECIFIED ON PURPOSE
+
+# Checkpointing
+checkpoint_every_n_epochs: 1 # save status checkpoint after every epoch 
+save_final_model: true 
+
+# Data augmentation
+#  - Bilinear interpolation hard-coded by default

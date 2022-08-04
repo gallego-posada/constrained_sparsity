@@ -1,0 +1,32 @@
+task_type: "gated"
+
+dataset_name: "mnist"
+# model_type: LEFT UNSPECIFIED ON PURPOSE. VALUE IS SET IN TRIGGER SCRIPT.
+use_bias: true
+
+# target_density: LEFT UNSPECIFIED ON PURPOSE
+
+weight_decay: 0.0
+l2_detach_gates: true
+droprate_init: 0.5
+
+batch_size: 128
+epochs: 200
+
+# Primal
+primal_optim: "Adam"
+primal_lr: 7.0e-4
+
+# Dual
+dual_optim: "SGD"
+dual_lr: 1.0e-4
+no_dual_restart: false # we *do* apply dual restarts
+
+# WandB
+# use_wandb, run_group LEFT UNSPECIFIED ON PURPOSE
+
+# Checkpointing
+# Not doing iterative checkpointing for this task.
+# Final status *does get* checkpointed.
+save_final_model: true
+checkpoint_every_n_epochs: -1
